@@ -11,7 +11,7 @@
 #import "QRCScannerViewController.h"
 @interface ViewController ()<QRCodeScannerViewControllerDelegate>
 
-@property (nonatomic,strong) WebViewJavascriptBridge* bridge;
+@property (nonatomic, strong) WebViewJavascriptBridge *bridge;
 
 @end
 
@@ -23,8 +23,7 @@
     NSString *htmlString = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
     [_webView loadHTMLString:htmlString baseURL:nil];
     
-    //设置能够进行桥接
-    [WebViewJavascriptBridge enableLogging];
+
     // 初始化WebViewJavascriptBridge,进行桥接
     _bridge = [WebViewJavascriptBridge bridgeForWebView:_webView];
     
@@ -43,7 +42,7 @@
 - (void)showQRReader:(id)sender {
     QRCScannerViewController *VC = [[QRCScannerViewController alloc] init];
     VC.delegate = self;
-    self.title=@"扫码";
+    self.title = @"扫码";
     [self.navigationController pushViewController:VC animated:YES];
 }
 #pragma mark - 扫描二维码完成后的代理方法
@@ -54,11 +53,12 @@
      [_bridge callHandler:@"paste_text"];
      */
     
+    
     //callHandler 商定的事件名称,用来调用网页里面相应的事件实现,data id类型,传回去的参数
     [self.bridge callHandler:@"paste_text" data:result];
     
+    
     /*需要传参数,带返回结果
-     
      [_bridge callHandler:@"paste_text" data:result responseCallback:^(id responseData) {
      NSLog(@"后台执行完成后返回的数据");
      }];
