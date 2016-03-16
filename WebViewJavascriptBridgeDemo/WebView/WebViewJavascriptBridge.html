@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+            <script>
+                function setupWebViewJavascriptBridge(callback) {
+                    if (window.WebViewJavascriptBridge) { return callback(WebViewJavascriptBridge); }
+                    if (window.WVJBCallbacks) { return window.WVJBCallbacks.push(callback); }
+                    window.WVJBCallbacks = [callback];
+                    var WVJBIframe = document.createElement('iframe');
+                    WVJBIframe.style.display = 'none';
+                    WVJBIframe.src = 'wvjbscheme://__BRIDGE_LOADED__';
+                    document.documentElement.appendChild(WVJBIframe);
+                    setTimeout(function() { document.documentElement.removeChild(WVJBIframe) }, 0)
+                }
+            
+                setupWebViewJavascriptBridge(function(bridge) {
+                    //点击按钮后执行方法
+                    document.getElementById('btn_camera').onclick = function() {
+                            //吊起OC原生handler
+                            bridge.callHandler('openCamera', function responseCallback(responseData) {
+                                    console.log("JS received response:", responseData)
+                                })
+                    }
+                   //收到callback
+                    bridge.registerHandler('paste_text', function(data, responseCallback) {
+                        //给输入框赋值
+                        document.getElementById('promotion_code').value = data;
+                    })
+                })
+                </script>
+	</head>
+	<body>
+		<div id="invoice-info" class="mui-card">
+			<li class="mui-table-view-cell">
+			 	<div class="mui-table-cell mui-col-xs-10" nowrap>
+					<input id="promotion_code" type="text" name="fcode" maxlength="32"
+								class="mui-input-clear" placeholder="请扫描优惠码" value=""></input>
+					<input id="btn_camera" type="button" value="扫码" />
+				</div>
+			</li>
+		</div>
+	</body>
+ 
+</html>
