@@ -18,11 +18,11 @@
                 setupWebViewJavascriptBridge(function(bridge) {
                     //点击按钮后执行方法
                     document.getElementById('btn_camera').onclick = function() {
-                            //吊起OC原生handler
+                            //调起OC原生handler
                             bridge.callHandler('openCamera', function responseCallback(responseData) {
                                     console.log("JS received response:", responseData)
                                 })
-                    }
+                        }
                    //收到callback
                     bridge.registerHandler('paste_text', function(data, responseCallback) {
                         //给输入框赋值
