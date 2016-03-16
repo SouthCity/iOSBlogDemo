@@ -9,9 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface ViewController : UIViewController<UIWebViewDelegate>
-{
-    IBOutlet UIWebView *_webView;
-}
+
+@property (nonatomic, weak) IBOutlet UIWebView *webView;
+
 
 
 

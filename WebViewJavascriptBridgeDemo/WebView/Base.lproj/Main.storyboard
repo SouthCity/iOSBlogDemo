@@ -52,7 +52,7 @@
                     <navigationItem key="navigationItem" id="VRk-33-bTD"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
-                        <outlet property="_webView" destination="Wc2-gL-7mv" id="Gzw-l5-Hgx"/>
+                        <outlet property="webView" destination="Wc2-gL-7mv" id="XHF-0v-hGh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
