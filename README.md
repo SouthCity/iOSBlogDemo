@@ -1,5 +1,5 @@
-# iOSBlogDemo
-简书中的demo.
+# 自己写的一些iOS小Demo
+
 
 1.UITableViewAutolayoutCell 使用autolayout实现简单地自适应tableviewCell
 
