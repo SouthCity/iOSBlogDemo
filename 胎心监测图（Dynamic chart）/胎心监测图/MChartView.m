@@ -23,23 +23,25 @@
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect {
     
-    
+    //画横向线条
     if (self.horizontalArray) {
-//        _averageWidth = self.frame.size.width/self.horizontalArray.count;
+
         for (int i = 0; i<self.horizontalArray.count; i++) {
             double x = _averageWidth*i;
           [self drawLine:CGPointMake(x, self.frame.size.height) endPoint:CGPointMake(x, 0)];
         }
     }
     
+    //画竖向线条
     if (self.verticalArray) {
-//        _averageHeight = self.frame.size.height/self.verticalArray.count;
+
         for (int i = 0; i<self.verticalArray.count; i++) {
             double y = _averageHeight*i;
             [self drawLine:CGPointMake(0, y) endPoint:CGPointMake(self.frame.size.width, y)];
         }
     }
     
+    //添加点
     for (int i = 0; i<_xArray.count; i++) {
         [self addPoint:[self.xArray[i] floatValue] heartbeat:[self.yArray[i] floatValue]];
     }
@@ -48,7 +50,7 @@
 
 
 
-
+//画线
 - (void)drawLine:(CGPoint)beginPoint endPoint:(CGPoint)endPoint {
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetLineCap(context, kCGLineCapRound);
@@ -62,11 +64,11 @@
     CGContextStrokePath(context);
 }
 
+//计算点的坐标
 - (void)setPoint:(double)time  heartbeat:(NSInteger)number {
     double length = (double)[[self.horizontalArray lastObject] integerValue] - [[self.horizontalArray firstObject] integerValue];
     CGFloat xPoint = time/length*self.frame.size.width;
     [self.xArray addObject:[NSNumber numberWithFloat:xPoint]];
-    
     
     double height = (double)[[self.verticalArray lastObject]integerValue] - [[self.verticalArray firstObject]integerValue];
     double tempNumber = number - [[self.verticalArray firstObject] integerValue];
@@ -85,10 +87,11 @@
     [self drawCirclePoint:CGRectMake(x, y, 5, 5)];
 }
 
+//画点
 - (void)drawCirclePoint:(CGRect)rect {
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextAddEllipseInRect(context, rect);
-     CGContextSetRGBStrokeColor(context, 255.0 / 255.0, 255.0 / 255.0, 255.0 / 255.0, 1.0);  //线的颜色
+    CGContextSetRGBStrokeColor(context, 255.0 / 255.0, 255.0 / 255.0, 255.0 / 255.0, 1.0);  //颜色
     CGContextFillPath(context);
 }
 
