@@ -8,10 +8,13 @@
 
 #import "MChartMainView.h"
 #import "MChartView.h"
+
+
+
+
 @interface MChartMainView ()
 
 @property (nonatomic, strong) MChartView *chartView;
-
 
 @end
 
@@ -24,6 +27,8 @@
     self.chartView = [[MChartView alloc]init];
     self.chartView.horizontalArray = self.horizontalArray;
     self.chartView.verticalArray = self.verticalArray;
+    
+    //预留两格空位
     self.chartView.averageWidth = self.frame.size.width/(self.horizontalArray.count+1);
     self.chartView.averageHeight = self.frame.size.height/(self.verticalArray.count+1);
     self.chartView.frame = CGRectMake(self.chartView.averageWidth*1.5, self.chartView.averageHeight*0.5, self.frame.size.width-self.chartView.averageWidth*2, self.frame.size.height-self.chartView.averageHeight*2);
