@@ -72,7 +72,7 @@
     
     double height = (double)[[self.verticalArray lastObject]integerValue] - [[self.verticalArray firstObject]integerValue];
     double tempNumber = number - [[self.verticalArray firstObject] integerValue];
-    CGFloat yPoint = tempNumber/height*self.frame.size.height;
+    CGFloat yPoint = (1-tempNumber/height)*self.frame.size.height;
     [self.yArray addObject:[NSNumber numberWithFloat:yPoint]];
 
     dispatch_async(dispatch_get_main_queue(), ^{
